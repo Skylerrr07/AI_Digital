@@ -14,19 +14,19 @@
     }
     
     #text-input1 {
-      width: 100%;
-      height: 400px;
+      width: 50%;
+      height: 40px;
     }
 
     #text-input2 {
       width: 100%;
-      height: 400px;
+      height: 350px;
     }
   </style>
 </head>
 <body>
   <div id="left-panel">
-    <h2>AI创作</h2>
+    <h2>请帮我创作文章</h2>
     <textarea id="text-input1" placeholder="请输入文章的关键字"></textarea>
     <button onclick="generateText()">AI创作</button>
     <button onclick="undo()">撤销</button>
@@ -35,19 +35,20 @@
   </div>
   
   <div id="right-panel">
-    <h2>AI视频</h2>
-    <p>选择数字人播报</p>
+    <h2>视频参数</h2>
+    <p>数字人播报</p>
     <button onclick="selectCharacter()">点击设置数字人播报</button>
-    <p>选择视频比例</p>
+    <p>视频比例</p>
     <select id="video-aspect-ratio">
       <option value="horizontal">横屏</option>
       <option value="vertical">竖屏</option>
     </select>
-    <p>选择背景音乐</p>
+    <p>背景音乐</p>
     <button onclick="selectMusic()">点击选择音乐</button>
-    <p>选择朗读音色</p>
+    <p>朗读音色</p>
     <button onclick="selectTone()">点击设置音色</button>
-    <button onclick="generateVideo()">生成视频</button>
+    
+    <p><button onclick="generateVideo()">生成视频</button><p>
   </div>
 
   <script>
