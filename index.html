@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>文本生成与人物形象处理</title>
+  <title>AI创作与AI视频</title>
   <style>
     #left-panel {
       width: 70%;
@@ -9,11 +9,16 @@
     }
     
     #right-panel {
-      width: 30%;
+      width: 25%;
       float: left;
     }
     
-    #text-input {
+    #text-input1 {
+      width: 100%;
+      height: 400px;
+    }
+
+    #text-input2 {
       width: 100%;
       height: 400px;
     }
@@ -21,30 +26,35 @@
 </head>
 <body>
   <div id="left-panel">
-    <h2>文字生成模块</h2>
-    <textarea id="text-input" placeholder="请输入关键字并生成文本"></textarea>
-    <button onclick="generateText()">生成文本</button>
+    <h2>AI创作</h2>
+    <textarea id="text-input1" placeholder="请输入文章的关键字"></textarea>
+    <button onclick="generateText()">AI创作</button>
     <button onclick="undo()">撤销</button>
     <button onclick="redo()">重做</button>
+    <textarea id="text-input2" placeholder="生成的文章将显示在这里"></textarea>
   </div>
   
   <div id="right-panel">
-    <h2>人物形象处理</h2>
-    <p>选择人物形象模板或上传视频</p>
-    <!-- 这里添加选择人物形象模板或上传视频的相关表单元素 -->
-    <p>选择横屏或竖屏</p>
-    <!-- 这里添加选择横屏或竖屏的相关表单元素 -->
-    <p>选择数字人播报试听</p>
-    <!-- 这里添加选择数字人播报试听的相关表单元素 -->
+    <h2>AI视频</h2>
+    <p>选择数字人播报</p>
+    <button onclick="selectCharacter()">点击设置数字人播报</button>
+    <p>选择视频比例</p>
+    <select id="video-aspect-ratio">
+      <option value="horizontal">横屏</option>
+      <option value="vertical">竖屏</option>
+    </select>
+    <p>选择背景音乐</p>
+    <button onclick="selectMusic()">点击选择音乐</button>
     <p>选择朗读音色</p>
-    <!-- 这里添加选择朗读音色的相关表单元素 -->
+    <button onclick="selectTone()">点击设置音色</button>
     <button onclick="generateVideo()">生成视频</button>
   </div>
 
   <script>
     function generateText() {
       // 根据输入的关键字生成文本逻辑
-      // 将生成的文本显示在界面上
+      // 将生成的文本显示在textarea#text-input2中
+      // 显示转化进度对话框
     }
     
     function undo() {
@@ -55,8 +65,21 @@
       // 重做操作逻辑
     }
     
+    function selectCharacter() {
+      // 弹出页面供选择数字人播报的人物形象或上传人物视频
+    }
+    
+    function selectMusic() {
+      // 弹出页面供选择背景音乐或上传音乐视频
+    }
+    
+    function selectTone() {
+      // 弹出页面供选择朗读音色
+    }
+    
     function generateVideo() {
-      // 根据生成或输入的文本信息，人物形象处理选项等生成视频逻辑
+      // 根据生成或输入的文本信息、人物形象、视频比例、背景音乐和朗读音色生成视频逻辑
+      // 显示生成进度对话框
       // 导出生成的视频
     }
   </script>
