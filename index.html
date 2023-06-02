@@ -38,7 +38,37 @@
   <div id="right-panel">
     <h2>视频参数</h2>
     <p>数字人播报</p>
-    <button onclick="selectCharacter()">点击设置数字人播报</button>
+    <button onclick="showModal()">点击设置数字人播报</button>
+    
+    <div id="myModal" class="modal">
+    <div class="modal-content">
+      <h2>选择图片</h2>
+      <img src="image1.jpg" alt="图片1">
+      <img src="image2.jpg" alt="图片2">
+      <img src="image3.jpg" alt="图片3">
+      <br>
+      <button onclick="confirmSelection()">确认</button>
+      <button onclick="cancelSelection()">取消</button>
+    </div>
+  </div>
+
+  <script>
+    function showModal() {
+      var modal = document.getElementById("myModal");
+      modal.style.display = "block";
+    }
+
+    function confirmSelection() {
+      // 处理确认选择的逻辑
+      var modal = document.getElementById("myModal");
+      modal.style.display = "none";
+    }
+
+    function cancelSelection() {
+      var modal = document.getElementById("myModal");
+      modal.style.display = "none";
+    }
+  </script>
     <p>视频比例</p>
     <select id="video-aspect-ratio">
       <option value="horizontal">横屏</option>
