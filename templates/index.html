@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AI Creation and Video</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <h2>请帮我创作文章</h2>
+        <form id="aiCreationForm">
+          <div class="form-group">
+            <label for="keyword">关键字</label>
+            <input type="text" class="form-control" id="keyword" name="keyword" required>
+          </div>
+          <button type="button" class="btn btn-primary" onclick="generateText()">AI创作</button>
+          <br><br>
+          <textarea id="generatedText" class="form-control" rows="10"></textarea>
+          <br>
+          <button type="button" class="btn btn-secondary" onclick="undo()">撤销</button>
+          <button type="button" class="btn btn-secondary" onclick="redo()">重做</button>
+        </form>
+      </div>
+      <div class="col-md-4">
+        <h2>视频参数</h2>
+        <form id="aiVideoForm" method="POST" action="/generate_video">
+          <div class="form-group">
+            <label for="avatar">数字人播报</label>
+            <select class="form-control" id="avatar" name="avatar">
+              <option value="avatar1">数字人1</option>
+              <option value="avatar2">数字人2</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="videoRatio">视频比例</label>
+            <select class="form-control" id="videoRatio" name="videoRatio">
+              <option value="horizontal">横屏</option>
+              <option value="vertical">竖屏</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="music">背景音乐</label>
+            <select class="form-control" id="music" name="music">
+              <option value="music1">背景音乐1</option>
+              <option value="music2">背景音乐2</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="videoRatio">朗读音色</label>
+            <select class="form-control" id="voice" name="voice">
+              <option value="voice1">音色1</option>
+              <option value="voice2">音色2</option>
+            </select>
+          </div>
+          <br><br>
+          <button type="button" class="btn btn-primary" onclick="generateVideo()">生成视频</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <script>
+    var textHistory = [];
+    var currentTextIndex = -1;
+
+    function generateText() {
+      var keyword = $('#keyword').val();
+
+      // 发送AJAX请求到服务器进行AI创作
+      $.ajax({
+        type: 'POST',
+        url: '/generate_text',
+        data: {'keyword': keyword},
+        success: function(response) {
+          $('#generatedText').val(response);
+          saveTextToHistory(response);
+        }
+      });
+    }
+	
+
+
+
+    function undo() {
+      if (currentTextIndex > 0) {
+        currentTextIndex--;
+        $('#generatedText').val(textHistory[currentTextIndex]);
+      }
+    }
+
+    function redo() {
+      if (currentTextIndex < textHistory.length - 1) {
+        currentTextIndex++;
+        $('#generatedText').val(textHistory[currentTextIndex]);
+      }
+    }
+
+    function selectBackgroundMusic() {
+      // 处理选择背景音乐的逻辑
+    }
+
+    function selectVoice() {
+      // 处理选择朗读音色的逻辑
+    }
+
+    function generateVideo() {
+      var videoText = $('#videoText').val();
+
+      // 发送AJAX请求到服务器生成视频
+      $.ajax({
+        type: 'POST',
+        url: '/generate_video',
+        data: {'videoText': videoText},
+        success: function(response) {
+          alert('Video generated successfully!');
+        }
+      });
+    }
+  </script>
+</body>
+</html>
+
