@@ -3,6 +3,8 @@
 <head>
   <title>AI Creation and Video</title>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body>
   <div class="container">
@@ -61,10 +63,7 @@
       </div>
     </div>
   </div>
-
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-  <script>
+  <script type="text/javascript">
     var textHistory = [];
     var currentTextIndex = -1;
 
@@ -82,9 +81,6 @@
         }
       });
     }
-	
-
-
 
     function undo() {
       if (currentTextIndex > 0) {
@@ -109,15 +105,22 @@
     }
 
     function generateVideo() {
-      var videoText = $('#videoText').val();
+      var generatedText = $('#generatedText').val();
+      var avatar = $('#avatar').val();
+      var videoRatio = $('#videoRatio').val();
+      var music = $('#music').val();
+      var voice = $('#voice').val();
 
       // 发送AJAX请求到服务器生成视频
       $.ajax({
         type: 'POST',
         url: '/generate_video',
-        data: {'videoText': videoText},
+        data: {'avatar': avatar, 'generatedText':generatedText, 'videoRatio':videoRatio, 'music':music, 'voice':voice},
         success: function(response) {
           alert('Video generated successfully!');
+        },
+        error: function(xhr, status, error) {
+          console.log('Error:', error);
         }
       });
     }
