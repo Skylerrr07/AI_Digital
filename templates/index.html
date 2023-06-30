@@ -117,11 +117,26 @@
         url: '/generate_video',
         data: {'avatar': avatar, 'generatedText':generatedText, 'videoRatio':videoRatio, 'music':music, 'voice':voice},
         success: function(response) {
-          alert('Video generated successfully!');
-        },
-        error: function(xhr, status, error) {
-          console.log('Error:', error);
-        }
+    // 在成功回调函数中处理返回的下载链接
+    if (response.success) {
+      var downloadUrl = response.downloadUrl;
+
+      // 创建一个下载链接元素
+      var downloadLink = document.createElement('a');
+      downloadLink.href = downloadUrl;
+      downloadLink.download = 'generated_video.mp4';
+      downloadLink.innerHTML = 'Click here to download the video';
+
+      // 将下载链接添加到页面中
+      var downloadContainer = document.getElementById('downloadContainer');
+      downloadContainer.appendChild(downloadLink);
+    } else {
+      alert('Video generation failed. Please try again.');
+    }
+  },
+  error: function() {
+    alert('An error occurred while generating the video. Please try again.');
+  }
       });
     }
   </script>
